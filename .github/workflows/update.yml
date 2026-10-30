@@ -25,7 +25,9 @@ jobs:
         run: |
           git config user.name "phone-list bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add tacdb.json devices.json last-checked.txt
+          for f in tacdb.json devices.json last-checked.txt; do
+            if [ -f "$f" ]; then git add "$f"; fi
+          done
           if git diff --cached --quiet; then
             echo "Nothing changed"
             exit 0
