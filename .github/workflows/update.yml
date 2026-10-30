@@ -2,7 +2,7 @@ name: Update phone list
 
 on:
   schedule:
-    - cron: '17 19 * * 0'   # every Monday 3:17am Perth time
+    - cron: '17 19 * * *'   # every day 3:17am Perth time
   workflow_dispatch:         # "Run workflow" button to update now
 
 permissions:
@@ -30,7 +30,7 @@ jobs:
             echo "Nothing changed"
             exit 0
           fi
-          git commit -m "Weekly phone list update $(date -u +%F)"
+          git commit -m "Phone list update $(date -u +%F)"
           git push
 
       - name: Refresh the CDN copy the POS reads
